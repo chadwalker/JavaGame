@@ -15,7 +15,7 @@ public class LoadState extends State {
 	public void init() {
 		// TODO Auto-generated method stub
 		Resources.load();
-		System.out.println("Loaded Successfully");
+		System.out.println("Loaded OK");
 		
 	}
 
