@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Dimension;
 import com.jamescho.game.state.State;
 import com.jamescho.game.state.LoadState;
+import com.jamescho.framework.util.InputHandler;
 
 
 @SuppressWarnings("serial")
@@ -20,6 +21,7 @@ public class Game extends JPanel implements Runnable {
 	private Thread gameThread;
 	private volatile boolean running;
 	private volatile State currentState;
+	private InputHandler inputHandler;
 	
 	public Game(int gameWidth, int gameHeight)
 	{
@@ -36,19 +38,20 @@ public class Game extends JPanel implements Runnable {
 	public void setCurrentState(State newState)
 	{
 		System.gc();
-		newState.init();
 		currentState = newState;
+		newState.init();
+		inputHandler.setCurrentState(currentState);
 	}
 	
 	@Override
 	public void addNotify()
 	{
 		super.addNotify();
+		initInput();
 		setCurrentState(new LoadState());
 		initGame();
 	}
-	
-	
+		
 	public void initGame()
 	{
 		running = true;
@@ -111,6 +114,14 @@ public class Game extends JPanel implements Runnable {
 		}
 		
 		g.drawImage(gameImage, 0, 0, null);
-		}
+	}
+	
+	private void initInput()
+	{
+		inputHandler = new InputHandler();
+		addKeyListener(inputHandler);
+		addMouseListener(inputHandler);
+	}
+	
 }
 

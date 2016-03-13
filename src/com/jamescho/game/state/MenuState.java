@@ -28,23 +28,26 @@ public class MenuState extends State {
 		g.drawImage(Resources.welcome,0,0,null);
 		g.drawImage(Resources.iconimage, 400,0,null);
 		
+		
 	}
 
 	@Override
 	public void onClick(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		setCurrentState(new PlayState());
+		System.out.println("Entered Play State");
 	}
 
 	@Override
 	public void onKeyPress(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("Key Pressed");
 	}
 
 	@Override
 	public void onKeyRelease(KeyEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println("Key Released");
 		
 	}
 
