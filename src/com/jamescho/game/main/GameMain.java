@@ -5,7 +5,7 @@ public class GameMain {
 
 	private static final String GAME_TITLE = "LoanBall";
 	public static final int GAME_WIDTH = 800;
-	public static final int GAME_HEIGHT = 450;
+	public static final int GAME_HEIGHT = 400;
 	public static Game sGame;
 	
 	public static void main(String[] args) {

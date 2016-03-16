@@ -29,7 +29,7 @@ public class PlayState extends State{
 		paddleLeft = new Paddle(0,195,PADDLE_WIDTH,PADDLE_HEIGHT);
 		paddleRight = new Paddle(785, 195, PADDLE_WIDTH, PADDLE_HEIGHT);
 		scoreFont = new Font("SansSerif", Font.BOLD, 25);
-		ball = new Ball(300,200, BALL_DIAMETER, BALL_DIAMETER);
+		ball = new Ball(500,400, BALL_DIAMETER, BALL_DIAMETER);
 	}
 
 	@Override
@@ -39,6 +39,23 @@ public class PlayState extends State{
 		paddleRight.update();
 		ball.update();
 		
+		if(ballCollides(paddleLeft))
+		{
+			playerScore = playerScore + 5;
+			ball.onCollisionWith(paddleLeft);
+			Resources.hit.play();
+			
+		}else if (ballCollides(paddleRight))
+		{
+			playerScore = playerScore + 5;
+			ball.onCollisionWith(paddleRight);
+			Resources.hit.play();
+			
+		}else if (ball.isDead())
+		{
+			playerScore -= 3;
+			ball.reset();
+		}
 	}
 
 	@Override
@@ -95,7 +112,12 @@ public class PlayState extends State{
 			paddleLeft.stop();
 			paddleRight.stop();
 		}
+	}
 		
+	private boolean ballCollides(Paddle p)
+	{
+		return ball.getRect().intersects(p.getRect());
 	}
 
+	
 }

@@ -7,7 +7,7 @@ public class Paddle {
 	
 	private int x, y, width, height, velY;
 	private Rectangle rect;
-	private final static int MOVE_SPEED_Y = 4;
+	private final static int MOVE_SPEED_Y = 10;
 	
 	public Paddle(int x, int y, int width, int height)
 	{
@@ -43,7 +43,7 @@ public class Paddle {
 	
 	public void accelUp()
 	{
-		velY = -5;
+		velY = -10;
 		velY = -MOVE_SPEED_Y;
 	}
 	
